@@ -20,9 +20,9 @@ public class Menu {
 
 		// declrarando variaveis
 		int opc;
-		int numero, agencia, tipo, aniversario;
+		int numero, agencia, tipo, aniversario, numeroDestino;
 		String titular;
-		float saldo, limite;
+		float saldo, limite, valor;
 
 		while (true) {
 
@@ -170,17 +170,50 @@ public class Menu {
 				break;
 			case 6:
 				System.out.println(Cores.TEXT_WHITE + "Saque\n\n");
+				
+				System.out.println("Digite o Número da conta: ");
+			    numero = sc.nextInt();
 
+			    do {
+			        System.out.println("Digite o Valor do Saque (R$): ");
+			        valor = sc.nextFloat();
+			    } while (valor <= 0);
+
+			    contas.sacar(numero, valor);
+				
 				keyPress();
 				break;
 			case 7:
 				System.out.println(Cores.TEXT_WHITE + "Depósito\n\n");
-
+				
+				System.out.print("Digite o Número da conta: ");
+			    numero = sc.nextInt();
+			    
+			    do {
+			        System.out.print("Digite o Valor do Depósito (R$): ");
+			        valor = sc.nextFloat();
+			    } while (valor <= 0);
+			    
+			    contas.depositar(numero, valor);
+			    
 				keyPress();
 				break;
 			case 8:
 				System.out.println(Cores.TEXT_WHITE + "Transferência entre Contas\n\n");
+				
+				System.out.print("Digite o Numero da Conta de Origem: ");
+				numero = sc.nextInt();
+				
+				System.out.print("Digite o Numero da Conta de Destino: ");
+				numeroDestino = sc.nextInt();
 
+				do {
+				    System.out.print("Digite o Valor da Transferência (R$): ");
+				    valor = sc.nextFloat();
+				} while (valor <= 0);
+
+				contas.transferir(numero, numeroDestino, valor);
+				
 				keyPress();
 				break;
 			default:
